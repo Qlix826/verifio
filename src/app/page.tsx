@@ -89,150 +89,108 @@ const testimonials: Testimonial[] = [
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen">
-      {/* Top Banner */}
-      <div className="bg-blue-600 text-white py-2 text-center text-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          🚀 Découvrez notre nouvelle fonctionnalité de vérification instantanée
-        </div>
-      </div>
-
-      {/* Hero Section */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 via-blue-50 to-indigo-50">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.2]" />
-          <div className="absolute inset-0 bg-gradient-to-t from-transparent via-blue-50/30 to-blue-50/10" />
-        </div>
-        
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-40">
-          <div className="text-center">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 tracking-tight"
-            >
-              Vérification de candidats <span className="text-blue-600">simplifiée</span>
-            </motion.h1>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed"
-            >
-              Automatisez vos vérifications d'antécédents et prenez des décisions éclairées en toute confiance
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
-              <Button
-                variant="default"
-                size="lg"
-                icon="check"
-                className="bg-blue-600 hover:bg-blue-700"
-              >
-                <Link href="/dashboard">Essai gratuit</Link>
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                icon="user"
-                className="border-blue-600 text-blue-600 hover:bg-blue-50"
-              >
-                <Link href="/dashboard">Se connecter</Link>
-              </Button>
-            </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="bg-white py-24 sm:py-32">
+    <div className="flex flex-col min-h-screen">
+      {/* Sections */}
+      <div className="py-24 sm:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl lg:text-center">
-            <h2 className="text-base font-semibold leading-7 text-blue-600">Fonctionnalités</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Tout ce dont vous avez besoin pour vérifier vos candidats
-            </p>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
-              Une suite complète d'outils pour simplifier et sécuriser votre processus de recrutement.
-            </p>
-          </div>
-          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              {features.map((feature) => (
-                <motion.div
-                  key={feature.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5 }}
-                  className="flex flex-col"
-                >
-                  <dt className="flex items-center gap-x-3 text-base font-semibold leading-7 text-gray-900">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-600">
-                      {React.createElement(feature.icon, {
-                        className: "h-6 w-6 text-white",
-                        "aria-hidden": "true",
-                      })}
-                    </div>
-                    {feature.name}
-                  </dt>
-                  <dd className="mt-4 flex flex-auto flex-col text-base leading-7 text-gray-600">
-                    <p className="flex-auto">{feature.description}</p>
-                  </dd>
-                </motion.div>
-              ))}
-            </dl>
-          </div>
-        </div>
-      </div>
-
-      {/* Testimonials Section */}
-      <div className="bg-gray-50 py-24 sm:py-32">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-xl text-center">
-            <h2 className="text-lg font-semibold leading-8 tracking-tight text-blue-600">Témoignages</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              Ce que nos clients disent de nous
-            </p>
-          </div>
-          <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
+          {/* Secteurs */}
+          <div className="mb-32">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Secteurs</h2>
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.author.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                  className="rounded-2xl bg-white p-8 text-sm leading-6 shadow-lg"
-                >
-                  <div className="flex gap-x-3">
-                    <OptimizedImage
-                      className="h-10 w-10 rounded-full bg-gray-50"
-                      src={testimonial.author.imageUrl}
-                      alt={testimonial.author.name}
-                      width={40}
-                      height={40}
-                    />
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.author.name}</div>
-                      <div className="text-gray-600">{testimonial.author.role}</div>
-                    </div>
-                  </div>
-                  <p className="mt-8 text-gray-700">{testimonial.content}</p>
-                </motion.div>
-              ))}
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Ressources Humaines</h3>
+                <p className="text-gray-600">Solutions adaptées pour les professionnels RH et recruteurs.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Services Financiers</h3>
+                <p className="text-gray-600">Vérifications approfondies pour le secteur financier.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Santé</h3>
+                <p className="text-gray-600">Solutions conformes aux normes du secteur de la santé.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Prix */}
+          <div className="mb-32">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Prix</h2>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Démarrage</h3>
+                <p className="text-3xl font-bold mb-4">Gratuit</p>
+                <p className="text-gray-600">Parfait pour commencer avec les vérifications de base.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-blue-200 ring-1 ring-blue-500">
+                <h3 className="text-lg font-semibold mb-2">Professionnel</h3>
+                <p className="text-3xl font-bold mb-4">49$/mois</p>
+                <p className="text-gray-600">Pour les entreprises en croissance.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Entreprise</h3>
+                <p className="text-3xl font-bold mb-4">Sur mesure</p>
+                <p className="text-gray-600">Solutions personnalisées pour grandes entreprises.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Solutions */}
+          <div className="mb-32">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Solutions</h2>
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Vérification d'identité</h3>
+                <p className="text-gray-600">Validation rapide et sécurisée des identités.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Antécédents criminels</h3>
+                <p className="text-gray-600">Vérification complète des antécédents.</p>
+              </div>
+              <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
+                <h3 className="text-lg font-semibold mb-2">Validation professionnelle</h3>
+                <p className="text-gray-600">Vérification des références et diplômes.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* À propos */}
+          <div className="mb-32">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">À propos</h2>
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+              <p className="text-gray-600 mb-4">
+                Verifio est une plateforme canadienne spécialisée dans la vérification d'antécédents, 
+                conçue pour simplifier et sécuriser vos processus de recrutement.
+              </p>
+              <p className="text-gray-600">
+                Notre mission est de fournir des solutions de vérification rapides, fiables et conformes 
+                aux normes les plus strictes de protection des données.
+              </p>
+            </div>
+          </div>
+
+          {/* Contact */}
+          <div className="mb-32">
+            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl mb-8">Contact</h2>
+            <div className="bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+              <p className="text-gray-600 mb-4">
+                Notre équipe est disponible pour répondre à toutes vos questions.
+              </p>
+              <div className="flex flex-col space-y-4">
+                <div>
+                  <h3 className="font-semibold">Email</h3>
+                  <p className="text-blue-600">contact@verifio.com</p>
+                </div>
+                <div>
+                  <h3 className="font-semibold">Téléphone</h3>
+                  <p className="text-blue-600">+1 (514) 123-4567</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* CTA Section */}
+      {/* Call to Action Section */}
       <div className="bg-gradient-to-br from-blue-600 to-blue-700">
         <div className="px-6 py-24 sm:px-6 sm:py-32 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
@@ -265,8 +223,13 @@ export default function LandingPage() {
 
       {/* Bottom Banner */}
       <div className="bg-gray-50 text-gray-600 py-2 text-center text-sm border-t border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-center gap-2">
           🔒 Conforme à la Loi 25 sur la protection des renseignements personnels - Vos données sont sécurisées
+          <img 
+            src="/flag-canada.svg" 
+            alt="Drapeau du Canada" 
+            className="h-4 w-auto ml-2"
+          />
         </div>
       </div>
     </div>
