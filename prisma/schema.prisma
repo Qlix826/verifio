@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id               String         @id @default(cuid())
+  name             String
+  neq              String         @unique
+  address          String
+  city             String
+  province         String
+  postalCode       String
+  phone            String?
+  website          String?
+  industry         String
+  size             String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  stripeCustomerId String?        @unique
+  subscriptionId   String?        @unique
+  trialEndsAt      DateTime?
+  users            User[]
+  verifications    Verification[]
+
+  @@map("companies")
+}
+
+model User {
+  id                String    @id @default(cuid())
+  email             String    @unique
+  firstName         String?
+  lastName          String?
+  company           Company?  @relation(fields: [companyId], references: [id])
+  companyId         String?
+  role              String    @default("USER")
+  stripeCustomerId  String?   @unique
+  subscriptionId    String?   @unique
+  subscriptionStatus String?
+  subscriptionPlan  String?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@index([companyId])
+  @@map("users")
+}
+
+model Verification {
+  id                   String      @id @default(cuid())
+  firstName            String
+  lastName             String
+  email                String
+  phone                String?
+  type                 String
+  position             String
+  department           String
+  status               String      @default("pending")
+  emailVerificationCode String?
+  smsVerificationCode   String?
+  userId               String
+  company              Company     @relation(fields: [companyId], references: [id])
+  companyId            String
+  createdAt            DateTime    @default(now())
+  updatedAt            DateTime    @updatedAt
+
+  @@index([companyId])
+  @@index([userId])
+} 

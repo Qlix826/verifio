@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="60" fill="white"/>
+  <path d="M40 15h120v30H40z" fill="#F3F4F6"/>
+  <text x="100" y="35" font-family="Arial" font-size="16" fill="#374151" text-anchor="middle">Partenaire 1</text>
+</svg> 

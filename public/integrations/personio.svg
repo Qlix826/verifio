@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="200" height="60" fill="white"/>
+  <circle cx="40" cy="30" r="15" fill="#224099"/>
+  <text x="100" y="35" font-family="Arial" font-size="16" fill="#333" text-anchor="middle">Personio</text>
+</svg> 

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 30 15">
+   <rect width="30" height="15" fill="#fff"/>
+   <rect width="6" height="15" fill="#f00"/>
+   <rect width="6" height="15" x="24" fill="#f00"/>
+   <path fill="#f00" d="M 12,2 L 13,2 14,2.5 14.5,2 15.5,2 16,2.5 16.5,2 17.5,2 18,2.5 18,3.5 17,4.5 17,6 15,7 15,9 12,7 12,6 10,4.5 9,3.5 9,2.5 9.5,2 10.5,2 11,2.5 11.5,2z"/>
+</svg> 
