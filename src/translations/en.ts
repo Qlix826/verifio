@@ -1,4 +1,9 @@
 export const en = {
+  navbar: {
+    dashboard: 'Dashboard',
+    settings: 'Settings',
+    profile: 'Profile'
+  },
   dashboard: {
     title: 'Manage your verifications and track their progress',
     newRequest: 'New Request',

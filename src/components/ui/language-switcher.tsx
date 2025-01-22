@@ -1,29 +1,35 @@
-import { Button } from "@/components/ui/button";
+'use client';
+
+type Language = 'en' | 'fr';
 
 interface LanguageSwitcherProps {
-  currentLanguage: string;
-  onLanguageChange: (language: string) => void;
+  currentLanguage: Language;
+  onLanguageChange: (language: Language) => void;
 }
 
 export function LanguageSwitcher({ currentLanguage, onLanguageChange }: LanguageSwitcherProps) {
   return (
-    <div className="flex space-x-2">
-      <Button
-        variant="ghost"
-        size="sm"
+    <div className="flex items-center gap-2">
+      <button
         onClick={() => onLanguageChange('fr')}
-        className={currentLanguage === 'fr' ? 'bg-blue-50 text-blue-700' : ''}
+        className={`px-2 py-1 text-sm font-medium rounded-md ${
+          currentLanguage === 'fr'
+            ? 'bg-blue-100 text-blue-700'
+            : 'text-gray-700 hover:text-blue-600'
+        }`}
       >
-        Français
-      </Button>
-      <Button
-        variant="ghost"
-        size="sm"
+        FR
+      </button>
+      <button
         onClick={() => onLanguageChange('en')}
-        className={currentLanguage === 'en' ? 'bg-blue-50 text-blue-700' : ''}
+        className={`px-2 py-1 text-sm font-medium rounded-md ${
+          currentLanguage === 'en'
+            ? 'bg-blue-100 text-blue-700'
+            : 'text-gray-700 hover:text-blue-600'
+        }`}
       >
-        English
-      </Button>
+        EN
+      </button>
     </div>
   );
 } 

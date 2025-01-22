@@ -1,4 +1,9 @@
 export const fr = {
+  navbar: {
+    dashboard: 'Tableau de bord',
+    settings: 'Paramètres',
+    profile: 'Profil'
+  },
   dashboard: {
     title: 'Gérez vos vérifications et suivez leur progression',
     newRequest: 'Nouvelle demande',
