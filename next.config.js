@@ -21,29 +21,9 @@ const nextConfig = {
     AUTH0_ISSUER_BASE_URL: process.env.AUTH0_ISSUER_BASE_URL,
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   },
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Access-Control-Allow-Origin',
-            value: '*',
-          },
-        ],
-      },
-    ];
-  },
   poweredByHeader: false,
   images: {
-    domains: ['localhost'],
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**',
-      },
-    ],
   },
   output: 'export',
   basePath: '/verifio',
