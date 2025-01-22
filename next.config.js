@@ -3,7 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['lh3.googleusercontent.com', 'avatars.githubusercontent.com'],
-    unoptimized: true,
   },
   env: {
     AUTH0_BASE_URL: process.env.AUTH0_BASE_URL,
