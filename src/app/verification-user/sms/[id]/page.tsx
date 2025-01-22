@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from 'sonner';
 
 export default function SmsVerificationPage({
   params
@@ -36,23 +36,14 @@ export default function SmsVerificationPage({
         throw new Error(data.error || 'Erreur de vérification');
       }
 
-      toast({
-        title: "Téléphone vérifié avec succès",
-        description: "Vous pouvez maintenant compléter votre demande.",
-        duration: 5000,
-      });
+      toast.success("Téléphone vérifié avec succès");
 
       // Rediriger vers le formulaire principal
       window.location.href = `/verification/${params.id}`;
 
     } catch (error) {
       console.error('Error:', error);
-      toast({
-        title: "Erreur",
-        description: error instanceof Error ? error.message : "Une erreur est survenue",
-        variant: "destructive",
-        duration: 5000,
-      });
+      toast.error(error instanceof Error ? error.message : "Une erreur est survenue");
     } finally {
       setIsSubmitting(false);
     }
@@ -78,20 +69,11 @@ export default function SmsVerificationPage({
         throw new Error(data.error || 'Erreur lors de l\'envoi du code');
       }
 
-      toast({
-        title: "Code envoyé",
-        description: "Un nouveau code a été envoyé à votre téléphone.",
-        duration: 5000,
-      });
+      toast.success("Un nouveau code a été envoyé à votre téléphone.");
 
     } catch (error) {
       console.error('Error:', error);
-      toast({
-        title: "Erreur",
-        description: error instanceof Error ? error.message : "Une erreur est survenue",
-        variant: "destructive",
-        duration: 5000,
-      });
+      toast.error(error instanceof Error ? error.message : "Une erreur est survenue");
     } finally {
       setIsResending(false);
     }

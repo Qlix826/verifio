@@ -6,6 +6,8 @@ import { Shield, Clock, Users, Building2, FileCheck, UserCheck } from 'lucide-re
 import Image from 'next/image'
 import { LanguageSwitcher } from '@/components/ui/language-switcher'
 
+type Language = 'en' | 'fr';
+
 const features = [
   {
     name: 'Vérification complète',
@@ -102,9 +104,9 @@ const pricing = [
 ]
 
 export default function HomePage() {
-  const [currentLanguage, setCurrentLanguage] = useState('fr')
+  const [currentLanguage, setCurrentLanguage] = useState<Language>('fr')
 
-  const handleLanguageChange = (language: string) => {
+  const handleLanguageChange = (language: Language) => {
     setCurrentLanguage(language)
     // Ici, vous pouvez ajouter la logique pour changer la langue dans votre application
   }

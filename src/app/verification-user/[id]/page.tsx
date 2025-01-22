@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Card } from "@/components/ui/card"
 import { FileText, User } from 'lucide-react';
-import { toast } from "@/components/ui/use-toast";
+import { toast } from 'sonner';
 
 interface Verification {
   id: string;
@@ -59,11 +59,7 @@ export default function VerificationUserPage({
     e.preventDefault();
 
     if (!formData.consent) {
-      toast({
-        title: "Erreur",
-        description: "Vous devez donner votre consentement pour continuer",
-        variant: "destructive",
-      });
+      toast.error("Vous devez donner votre consentement pour continuer");
       return;
     }
 
@@ -80,19 +76,12 @@ export default function VerificationUserPage({
         throw new Error('Erreur lors de la validation');
       }
 
-      toast({
-        title: "Succès",
-        description: "Vos informations ont été validées avec succès",
-      });
+      toast.success("Vos informations ont été validées avec succès");
 
       // Rediriger vers la page de confirmation
       window.location.href = `/verification-user/confirmation/${params.id}`;
     } catch (error) {
-      toast({
-        title: "Erreur",
-        description: "Une erreur est survenue lors de la validation",
-        variant: "destructive",
-      });
+      toast.error("Une erreur est survenue lors de la validation");
     }
   };
 

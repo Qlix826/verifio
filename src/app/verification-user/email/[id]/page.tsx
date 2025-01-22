@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { toast } from "@/components/ui/use-toast";
+import { toast } from 'sonner';
 
 export default function EmailVerificationPage({
   params
@@ -35,23 +35,14 @@ export default function EmailVerificationPage({
         throw new Error(data.error || 'Erreur de vérification');
       }
 
-      toast({
-        title: "Email vérifié avec succès",
-        description: "Veuillez maintenant vérifier votre numéro de téléphone.",
-        duration: 5000,
-      });
+      toast.success("Email vérifié avec succès");
 
       // Rediriger vers la vérification SMS
       window.location.href = `/verification/sms/${params.id}`;
 
     } catch (error) {
       console.error('Error:', error);
-      toast({
-        title: "Erreur",
-        description: error instanceof Error ? error.message : "Une erreur est survenue",
-        variant: "destructive",
-        duration: 5000,
-      });
+      toast.error(error instanceof Error ? error.message : "Une erreur est survenue");
     } finally {
       setIsSubmitting(false);
     }

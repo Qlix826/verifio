@@ -52,7 +52,7 @@ export default function CompanyProfilePage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSelectChange = (name: string, value: string) => {
+  const handleSelectChange = (name: keyof CompanyForm, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -172,19 +172,9 @@ export default function CompanyProfilePage() {
                     </label>
                     <Select
                       value={formData.city}
-                      onValueChange={(value) => handleSelectChange('city', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez une ville" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {QUEBEC_CITIES.map((city) => (
-                          <SelectItem key={city} value={city}>
-                            {city}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleSelectChange('city', e.target.value)}
+                      options={QUEBEC_CITIES.map(city => ({ value: city, label: city }))}
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -193,19 +183,9 @@ export default function CompanyProfilePage() {
                     </label>
                     <Select
                       value={formData.province}
-                      onValueChange={(value) => handleSelectChange('province', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez une province" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {PROVINCES.map((province) => (
-                          <SelectItem key={province.value} value={province.value}>
-                            {province.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleSelectChange('province', e.target.value)}
+                      options={PROVINCES}
+                    />
                   </div>
                 </div>
 
@@ -260,19 +240,9 @@ export default function CompanyProfilePage() {
                     </label>
                     <Select
                       value={formData.industry}
-                      onValueChange={(value) => handleSelectChange('industry', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez un secteur" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {INDUSTRIES.map((industry) => (
-                          <SelectItem key={industry} value={industry}>
-                            {industry}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleSelectChange('industry', e.target.value)}
+                      options={INDUSTRIES.map(industry => ({ value: industry, label: industry }))}
+                    />
                   </div>
 
                   <div className="space-y-2">
@@ -281,19 +251,9 @@ export default function CompanyProfilePage() {
                     </label>
                     <Select
                       value={formData.size}
-                      onValueChange={(value) => handleSelectChange('size', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez une taille" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {COMPANY_SIZES.map((size) => (
-                          <SelectItem key={size.value} value={size.value}>
-                            {size.label}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleSelectChange('size', e.target.value)}
+                      options={COMPANY_SIZES}
+                    />
                   </div>
                 </div>
               </div>

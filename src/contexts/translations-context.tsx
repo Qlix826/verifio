@@ -1,6 +1,8 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import i18next from 'i18next';
+import { initReactI18next } from 'react-i18next';
 import { en } from '@/translations/en';
 import { fr } from '@/translations/fr';
 
@@ -11,28 +13,53 @@ type TranslationsContextType = {
   changeLanguage: (language: Language) => void;
 };
 
+// Initialiser i18next
+i18next
+  .use(initReactI18next)
+  .init({
+    resources: {
+      en: { translation: en },
+      fr: { translation: fr }
+    },
+    lng: 'fr',
+    fallbackLng: 'fr',
+    interpolation: {
+      escapeValue: false
+    }
+  });
+
 const TranslationsContext = createContext<TranslationsContextType | null>(null);
 
 export function TranslationsProvider({ children }: { children: React.ReactNode }) {
   const [currentLanguage, setCurrentLanguage] = useState<Language>('fr');
-  const translations = currentLanguage === 'fr' ? fr : en;
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     // Récupérer la langue sauvegardée dans le localStorage au chargement
     const savedLanguage = localStorage.getItem('language') as Language;
     if (savedLanguage) {
       setCurrentLanguage(savedLanguage);
+      i18next.changeLanguage(savedLanguage);
     }
+    setIsLoaded(true);
   }, []);
 
   const t = (path: string) => {
-    return path.split('.').reduce((obj, key) => obj[key as keyof typeof obj], translations as any) || path;
+    if (!isLoaded) {
+      return path;
+    }
+    return i18next.t(path);
   };
 
   const changeLanguage = (language: Language) => {
     setCurrentLanguage(language);
     localStorage.setItem('language', language);
+    i18next.changeLanguage(language);
   };
+
+  if (!isLoaded) {
+    return null;
+  }
 
   return (
     <TranslationsContext.Provider value={{ t, currentLanguage, changeLanguage }}>

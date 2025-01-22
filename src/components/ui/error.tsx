@@ -1,4 +1,4 @@
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, RefreshCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useTranslation } from 'react-i18next';
 import { Button } from './button';
@@ -30,8 +30,9 @@ export function Error({ className, title, message, retry, fullScreen }: ErrorPro
             <Button
               variant="outline"
               onClick={retry}
-              icon="refresh-ccw"
+              className="flex items-center gap-2"
             >
+              <RefreshCcw className="h-4 w-4" />
               {t('common.retry')}
             </Button>
           )}
@@ -58,9 +59,9 @@ export function Error({ className, title, message, retry, fullScreen }: ErrorPro
               variant="ghost"
               size="sm"
               onClick={retry}
-              icon="refresh-ccw"
-              className="mt-2"
+              className="mt-2 flex items-center gap-2"
             >
+              <RefreshCcw className="h-4 w-4" />
               {t('common.retry')}
             </Button>
           )}
