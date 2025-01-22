@@ -2,12 +2,11 @@
 
 import { DashboardNavbar } from '@/components/layout/dashboard-navbar';
 import { FileText, Users, Clock } from 'lucide-react';
-import { LanguageSwitcher } from '@/components/ui/language-switcher';
 import Link from 'next/link';
 import { useTranslations } from '@/hooks/use-translations';
 
 export default function DashboardPage() {
-  const { t, currentLanguage, changeLanguage } = useTranslations();
+  const { t } = useTranslations();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -16,21 +15,15 @@ export default function DashboardPage() {
       <main className="p-4 sm:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-8">
-            <div className="flex items-center gap-4">
-              <h1 className="text-2xl font-bold text-gray-900">
-                {t('dashboard.title')}
-              </h1>
-              <Link
-                href="/dashboard/new"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                {t('dashboard.newRequest')}
-              </Link>
-            </div>
-            <LanguageSwitcher
-              currentLanguage={currentLanguage}
-              onLanguageChange={changeLanguage}
-            />
+            <h1 className="text-2xl font-bold text-gray-900">
+              {t('dashboard.title')}
+            </h1>
+            <Link
+              href="/dashboard/new"
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              {t('dashboard.newRequest')}
+            </Link>
           </div>
 
           {/* Stats */}
