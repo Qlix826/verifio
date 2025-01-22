@@ -1,17 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Désactiver temporairement HTTPS pour le développement
-  // Une fois que tout fonctionne, configurez HTTPS correctement
+  output: 'export',
+  basePath: '/verifio',
+  images: {
+    unoptimized: true,
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.resolve.fallback = {
         ...config.resolve.fallback,
+        fs: false,
         net: false,
         tls: false,
-        fs: false,
         'fs/promises': false,
-        buffer: require.resolve('buffer/'),
       };
     }
     return config;
@@ -22,11 +24,6 @@ const nextConfig = {
     AUTH0_CLIENT_ID: process.env.AUTH0_CLIENT_ID,
   },
   poweredByHeader: false,
-  images: {
-    unoptimized: true,
-  },
-  output: 'export',
-  basePath: '/verifio',
 };
 
 module.exports = nextConfig;
