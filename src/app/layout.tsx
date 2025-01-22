@@ -1,6 +1,5 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
-import { metadata } from './metadata'
 import type { Metadata } from 'next'
 import { TranslationsProvider } from '@/contexts/translations-context'
 
