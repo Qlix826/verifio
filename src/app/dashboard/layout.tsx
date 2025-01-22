@@ -1,7 +1,5 @@
 'use client';
 
-import { Nav } from '@/components/nav';
-
 export default function DashboardLayout({
   children,
 }: {
@@ -9,7 +7,6 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <Nav />
       {children}
     </>
   );

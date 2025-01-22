@@ -1,17 +1,16 @@
 'use client';
 
-import { PropsWithChildren } from 'react';
-import { Toaster } from 'sonner';
-import { Theme } from '@radix-ui/themes';
-import { I18nProvider } from './i18n-provider';
+import { ThemeProvider } from 'next-themes';
 
-export function RootProvider({ children }: PropsWithChildren) {
+export function RootProvider({ children }: { children: React.ReactNode }) {
   return (
-    <I18nProvider>
-      <Theme accentColor="blue" grayColor="gray" radius="medium">
-        <Toaster position="top-right" />
-        {children}
-      </Theme>
-    </I18nProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
   );
 } 

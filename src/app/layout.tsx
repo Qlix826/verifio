@@ -1,24 +1,28 @@
-import { Inter } from 'next/font/google';
-import { RootProvider } from '@/components/providers/root-provider';
-import '@radix-ui/themes/styles.css';
-import '@/styles/theme-config.css';
-import '@/styles/globals.css';
-import { metadata } from './metadata';
+import './globals.css'
+import { Inter } from 'next/font/google'
+import { metadata } from './metadata'
+import type { Metadata } from 'next'
+import { TranslationsProvider } from '@/contexts/translations-context'
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ['latin'] })
 
-export { metadata };
+export const metadata: Metadata = {
+  title: 'Verifio - Vérification de candidats',
+  description: 'Plateforme de vérification de candidats',
+}
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr">
       <body className={inter.className}>
-        <RootProvider>
-          <main className="min-h-screen bg-gray-50">
-            {children}
-          </main>
-        </RootProvider>
+        <TranslationsProvider>
+          {children}
+        </TranslationsProvider>
       </body>
     </html>
-  );
+  )
 }

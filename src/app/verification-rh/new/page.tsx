@@ -11,10 +11,6 @@ import {
   Input,
   Button,
   Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
 } from '@/components/ui';
 import { toast } from 'sonner';
 
@@ -23,27 +19,15 @@ interface VerificationForm {
   lastName: string;
   email: string;
   phone: string;
-  type: string;
-  position: string;
-  department: string;
+  services: string[];
 }
 
-const verificationTypes = [
+const verificationServices = [
   { value: 'criminal', label: 'Vérification criminelle' },
   { value: 'employment', label: 'Vérification d\'emploi' },
   { value: 'education', label: 'Vérification d\'éducation' },
   { value: 'reference', label: 'Vérification des références' },
   { value: 'identity', label: 'Vérification d\'identité' },
-];
-
-const departments = [
-  { value: 'engineering', label: 'Ingénierie' },
-  { value: 'sales', label: 'Ventes' },
-  { value: 'marketing', label: 'Marketing' },
-  { value: 'finance', label: 'Finance' },
-  { value: 'hr', label: 'Ressources Humaines' },
-  { value: 'operations', label: 'Opérations' },
-  { value: 'other', label: 'Autre' },
 ];
 
 export default function NewVerificationPage() {
@@ -54,18 +38,21 @@ export default function NewVerificationPage() {
     lastName: '',
     email: '',
     phone: '',
-    type: '',
-    position: '',
-    department: '',
+    services: [],
   });
 
-  const handleChange = (field: keyof VerificationForm, value: string) => {
+  const handleChange = (field: keyof VerificationForm, value: string | string[]) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
 
   const validateForm = () => {
-    const requiredFields: (keyof VerificationForm)[] = ['firstName', 'lastName', 'email', 'type', 'position', 'department'];
-    const missingFields = requiredFields.filter(field => !formData[field]);
+    const requiredFields: (keyof VerificationForm)[] = ['firstName', 'lastName', 'email', 'services'];
+    const missingFields = requiredFields.filter(field => {
+      if (field === 'services') {
+        return !formData[field].length;
+      }
+      return !formData[field];
+    });
     
     if (missingFields.length > 0) {
       const fieldLabels = {
@@ -73,9 +60,7 @@ export default function NewVerificationPage() {
         lastName: 'Nom',
         email: 'Email',
         phone: 'Téléphone',
-        type: 'Type de vérification',
-        position: 'Poste',
-        department: 'Département'
+        services: 'Services',
       };
       
       const missingFieldNames = missingFields.map(field => fieldLabels[field]).join(', ');
@@ -181,58 +166,27 @@ export default function NewVerificationPage() {
               />
             </div>
             <div className="space-y-2">
-              <label htmlFor="type" className="block text-sm font-medium">
-                Type de vérification <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium">
+                Services de vérification <span className="text-red-500">*</span>
               </label>
-              <Select
-                value={formData.type}
-                onValueChange={value => handleChange('type', value)}
-                required
-              >
-                <SelectTrigger id="type" aria-required="true">
-                  <SelectValue placeholder="Sélectionner un type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {verificationTypes.map(type => (
-                    <SelectItem key={type.value} value={type.value}>
-                      {type.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="position" className="block text-sm font-medium">
-                Poste <span className="text-red-500">*</span>
-              </label>
-              <Input
-                id="position"
-                value={formData.position}
-                onChange={e => handleChange('position', e.target.value)}
-                required
-                aria-required="true"
-              />
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="department" className="block text-sm font-medium">
-                Département <span className="text-red-500">*</span>
-              </label>
-              <Select
-                value={formData.department}
-                onValueChange={value => handleChange('department', value)}
-                required
-              >
-                <SelectTrigger id="department" aria-required="true">
-                  <SelectValue placeholder="Sélectionner un département" />
-                </SelectTrigger>
-                <SelectContent>
-                  {departments.map(dept => (
-                    <SelectItem key={dept.value} value={dept.value}>
-                      {dept.label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <div className="space-y-2">
+                {verificationServices.map((service) => (
+                  <label key={service.value} className="flex items-center space-x-2">
+                    <input
+                      type="checkbox"
+                      checked={formData.services.includes(service.value)}
+                      onChange={(e) => {
+                        const newServices = e.target.checked
+                          ? [...formData.services, service.value]
+                          : formData.services.filter(s => s !== service.value);
+                        handleChange('services', newServices);
+                      }}
+                      className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <span className="text-sm text-gray-700">{service.label}</span>
+                  </label>
+                ))}
+              </div>
             </div>
           </CardContent>
           <CardFooter>

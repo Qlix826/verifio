@@ -3,16 +3,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Icons } from '@/components/ui/icons';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, User, LogOut, LayoutDashboard, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navigationItems = [
-  { name: 'Secteurs', href: '/secteurs' },
+  { name: 'Secteurs', href: '#secteurs' },
   { name: 'Prix', href: '/pricing' },
-  { name: 'Solutions', href: '/solutions' },
-  { name: 'À propos', href: '/about' },
-  { name: 'Contact', href: '/contact' },
+  { name: 'Solutions', href: '#solutions' },
+  { name: 'À propos', href: '#about' },
+  { name: 'Contact', href: '#contact' },
 ];
 
 export function Nav() {
@@ -81,7 +80,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.layoutDashboard className="w-4 h-4 mr-2" />
+                      <LayoutDashboard className="w-4 h-4 mr-2" />
                       Dashboard
                     </Link>
                   </Button>
@@ -97,7 +96,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/api/auth/logout">
-                      <Icons.logOut className="w-4 h-4 mr-2" />
+                      <LogOut className="w-4 h-4 mr-2" />
                       Déconnexion
                     </Link>
                   </Button>
@@ -116,7 +115,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.user className="w-4 h-4 mr-2" />
+                      <User className="w-4 h-4 mr-2" />
                       Se connecter
                     </Link>
                   </Button>
@@ -131,7 +130,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.check className="w-4 h-4 mr-2" />
+                      <Check className="w-4 h-4 mr-2" />
                       Essai gratuit
                     </Link>
                   </Button>
@@ -186,7 +185,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.layoutDashboard className="w-4 h-4 mr-2" />
+                      <LayoutDashboard className="w-4 h-4 mr-2" />
                       Dashboard
                     </Link>
                   </Button>
@@ -196,7 +195,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/api/auth/logout">
-                      <Icons.logOut className="w-4 h-4 mr-2" />
+                      <LogOut className="w-4 h-4 mr-2" />
                       Déconnexion
                     </Link>
                   </Button>
@@ -209,7 +208,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.user className="w-4 h-4 mr-2" />
+                      <User className="w-4 h-4 mr-2" />
                       Se connecter
                     </Link>
                   </Button>
@@ -218,7 +217,7 @@ export function Nav() {
                     asChild
                   >
                     <Link href="/dashboard">
-                      <Icons.check className="w-4 h-4 mr-2" />
+                      <Check className="w-4 h-4 mr-2" />
                       Essai gratuit
                     </Link>
                   </Button>

@@ -59,12 +59,7 @@ export default function OnboardingPage() {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSelectChange = (name: string, value: string) => {
+  const handleChange = (name: string, value: string) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
@@ -159,7 +154,7 @@ export default function OnboardingPage() {
                   <Input
                     name="name"
                     value={formData.name}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange('name', e.target.value)}
                     required
                   />
                 </div>
@@ -171,7 +166,7 @@ export default function OnboardingPage() {
                   <Input
                     name="address"
                     value={formData.address}
-                    onChange={handleChange}
+                    onChange={(e) => handleChange('address', e.target.value)}
                     required
                   />
                 </div>
@@ -182,20 +177,10 @@ export default function OnboardingPage() {
                       {t('companyProfile.fields.city')}
                     </label>
                     <Select
+                      options={QUEBEC_CITIES.map(city => ({ value: city, label: city }))}
                       value={formData.city}
-                      onValueChange={(value) => handleSelectChange('city', value)}
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Sélectionnez une ville" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {QUEBEC_CITIES.map((city) => (
-                          <SelectItem key={city} value={city}>
-                            {city}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
+                      onChange={(e) => handleChange('city', e.target.value)}
+                    />
                   </div>
 
                   <div>
@@ -205,7 +190,7 @@ export default function OnboardingPage() {
                     <Input
                       name="postalCode"
                       value={formData.postalCode}
-                      onChange={handleChange}
+                      onChange={(e) => handleChange('postalCode', e.target.value)}
                       required
                       pattern="[A-Za-z][0-9][A-Za-z] [0-9][A-Za-z][0-9]"
                       placeholder="H3B 2Y7"
@@ -218,20 +203,10 @@ export default function OnboardingPage() {
                     {t('companyProfile.fields.industry')}
                   </label>
                   <Select
+                    options={INDUSTRIES.map(industry => ({ value: industry, label: industry }))}
                     value={formData.industry}
-                    onValueChange={(value) => handleSelectChange('industry', value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionnez un secteur" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {INDUSTRIES.map((industry) => (
-                        <SelectItem key={industry} value={industry}>
-                          {industry}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    onChange={(e) => handleChange('industry', e.target.value)}
+                  />
                 </div>
 
                 <div>
@@ -239,20 +214,10 @@ export default function OnboardingPage() {
                     {t('companyProfile.fields.size')}
                   </label>
                   <Select
+                    options={COMPANY_SIZES}
                     value={formData.size}
-                    onValueChange={(value) => handleSelectChange('size', value)}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Sélectionnez une taille" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {COMPANY_SIZES.map((size) => (
-                        <SelectItem key={size.value} value={size.value}>
-                          {size.label}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                    onChange={(e) => handleChange('size', e.target.value)}
+                  />
                 </div>
               </div>
 
