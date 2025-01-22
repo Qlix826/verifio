@@ -45,6 +45,8 @@ const nextConfig = {
       },
     ],
   },
+  output: 'export',
+  basePath: '/verifio',
 };
 
 module.exports = nextConfig;
